@@ -23,14 +23,16 @@ class ListTableViewController: UITableViewController {
         }
         
     }
+    
+    var person : Person?
     // mark: -控制器y跳转方法
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc = segue.destination as! DetailediewControllerViewController
         if let indexPath = sender as? IndexPath{
             vc.person = data[indexPath.row]
-//            print( segue.destination)
-//            print("sass\(vc.person)   sdasd   \(data)      \(indexPath.row)")
-//            print("1223")
+            vc.blockCallBack = {
+                self.tableView.reloadRows(at: [indexPath], with: .automatic)
+            }
             
         }
         
